@@ -1,0 +1,134 @@
+<div class="app-shell">
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/" aria-label="F1 Hub home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name h-display">F1 Hub</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="/home">Home</a>
+        <a class="nav-link" href="/teams">Teams</a>
+        <a class="nav-link" href="/races">Races</a>
+        <a class="nav-link" href="/predictions">Predictions</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="/login">Login</a>
+        <a class="btn btn-primary" href="/predictions">Start predicting</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <div class="badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Built for fast schedules & clean predictions
+          </div>
+
+          <h1 class="h1 h-display">
+            Your premium Formula 1
+            <span class="hero-accent">race hub</span>
+          </h1>
+          <p class="p hero-sub">
+            Browse teams, drivers and upcoming races, then create your own predictions.
+            Clean, academic architecture — polished, motorsport-inspired UI.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="/home">Explore the hub</a>
+            <a class="btn" href="/races">View schedule</a>
+            <span class="hero-hint"><span class="kbd">JWT</span> <span class="kbd">DRF</span> <span class="kbd">Angular</span></span>
+          </div>
+        </div>
+
+        <div class="hero-right card">
+          <div class="hero-card-top">
+            <div class="accent-bar" aria-hidden="true"></div>
+            <div class="hero-card-title">
+              <div class="hero-card-kicker">Race weekend</div>
+              <div class="hero-card-h">Prediction Panel</div>
+            </div>
+          </div>
+          <div class="divider-line" aria-hidden="true"></div>
+          <div class="hero-card-grid">
+            <div class="mini card mini-card">
+              <div class="mini-label">Upcoming</div>
+              <div class="mini-value">Grand Prix</div>
+              <div class="mini-sub">Schedule →</div>
+            </div>
+            <div class="mini card mini-card">
+              <div class="mini-label">Top teams</div>
+              <div class="mini-value">10</div>
+              <div class="mini-sub">Constructors</div>
+            </div>
+            <div class="mini card mini-card">
+              <div class="mini-label">Drivers</div>
+              <div class="mini-value">20</div>
+              <div class="mini-sub">Grid</div>
+            </div>
+            <div class="mini card mini-card">
+              <div class="mini-label">Your picks</div>
+              <div class="mini-value">Create</div>
+              <div class="mini-sub">Predictions</div>
+            </div>
+          </div>
+          <div class="hero-card-foot">
+            <span class="hero-foot-muted">Dark. Fast. Focused.</span>
+            <span class="hero-foot-accent" aria-hidden="true">—</span>
+            <span class="hero-foot-muted">F1 Hub</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="h2 h-display">Built to look fast</h2>
+            <p class="p">Premium cards, crisp spacing, subtle racing accents — nothing messy.</p>
+          </div>
+          <div class="section-actions">
+            <a class="btn btn-ghost" href="/teams">Browse teams</a>
+            <a class="btn" href="/predictions">My predictions</a>
+          </div>
+        </div>
+
+        <div class="grid grid-3 feature-grid">
+          <div class="card feature">
+            <div class="feature-icon" aria-hidden="true"></div>
+            <div class="feature-title">Schedule-ready</div>
+            <div class="feature-text">Upcoming races surface quickly with a clean layout.</div>
+          </div>
+          <div class="card feature">
+            <div class="feature-icon feature-icon-2" aria-hidden="true"></div>
+            <div class="feature-title">Prediction flow</div>
+            <div class="feature-text">Create, edit, delete predictions — crisp and explainable.</div>
+          </div>
+          <div class="card feature">
+            <div class="feature-icon feature-icon-3" aria-hidden="true"></div>
+            <div class="feature-title">Standings style</div>
+            <div class="feature-text">Stats endpoints map neatly to a “standings” UI.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container footer">
+      <div class="divider-line" aria-hidden="true"></div>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="h-display">F1 Hub</span>
+        </div>
+        <div class="footer-muted">University project • Angular + Django REST • Dark premium theme</div>
+      </div>
+    </div>
+
+    <router-outlet />
+  </main>
+</div>
