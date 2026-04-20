@@ -1,0 +1,26 @@
+<section class="container auth-page">
+  <div class="card auth-card">
+    <h2 class="h2 h-display">Login</h2>
+    <p class="p">Use your account to buy, edit, and cancel race tickets.</p>
+
+    <label>
+      Username
+      <input [(ngModel)]="loginForm.username" name="username" placeholder="Username" />
+    </label>
+
+    <label>
+      Password
+      <input [(ngModel)]="loginForm.password" name="password" type="password" placeholder="Password" />
+    </label>
+
+    <button class="btn btn-primary" type="button" (click)="login()">Login</button>
+
+    @if (success) {
+      <p class="status success">{{ success }}</p>
+    }
+
+    @if (error) {
+      <p class="status error">{{ error }}</p>
+    }
+  </div>
+</section>

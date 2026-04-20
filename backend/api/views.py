@@ -5,15 +5,26 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
+<<<<<<< HEAD
 from .models import Driver, Prediction, Race, Team
+=======
+from .models import Driver, Race, Team, Ticket
+>>>>>>> ticket-project-update
 from .serializers import (
     DriverModelSerializer,
     DriverStatsSerializer,
     LoginSerializer,
+<<<<<<< HEAD
     PredictionModelSerializer,
     RaceModelSerializer,
     RaceSummarySerializer,
     TeamModelSerializer,
+=======
+    RaceModelSerializer,
+    RaceSummarySerializer,
+    TeamModelSerializer,
+    TicketModelSerializer,
+>>>>>>> ticket-project-update
 )
 
 
@@ -182,6 +193,7 @@ class DriverListAPIView(APIView):
         return Response(DriverModelSerializer(drivers, many=True).data)
 
 
+<<<<<<< HEAD
 class PredictionListCreateAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -199,11 +211,31 @@ class PredictionListCreateAPIView(APIView):
             prediction = serializer.save(user=request.user)
             return Response(
                 PredictionModelSerializer(prediction).data,
+=======
+class TicketListCreateAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        tickets = (
+            Ticket.objects.select_related("race", "user")
+            .filter(user=request.user)
+            .order_by("-purchased_at")
+        )
+        return Response(TicketModelSerializer(tickets, many=True).data)
+
+    def post(self, request):
+        serializer = TicketModelSerializer(data=request.data)
+        if serializer.is_valid():
+            ticket = serializer.save(user=request.user)
+            return Response(
+                TicketModelSerializer(ticket).data,
+>>>>>>> ticket-project-update
                 status=status.HTTP_201_CREATED,
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+<<<<<<< HEAD
 class PredictionDetailAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -233,10 +265,36 @@ class PredictionDetailAPIView(APIView):
         if serializer.is_valid():
             updated = serializer.save(user=request.user)
             return Response(PredictionModelSerializer(updated).data)
+=======
+class TicketDetailAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self, pk: int, user):
+        return Ticket.objects.select_related("race", "user").get(pk=pk, user=user)
+
+    def get(self, request, pk: int):
+        try:
+            ticket = self.get_object(pk, request.user)
+        except Ticket.DoesNotExist:
+            return Response({"detail": "Ticket not found."}, status=status.HTTP_404_NOT_FOUND)
+        return Response(TicketModelSerializer(ticket).data)
+
+    def put(self, request, pk: int):
+        try:
+            ticket = self.get_object(pk, request.user)
+        except Ticket.DoesNotExist:
+            return Response({"detail": "Ticket not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = TicketModelSerializer(ticket, data=request.data, partial=True)
+        if serializer.is_valid():
+            updated = serializer.save(user=request.user)
+            return Response(TicketModelSerializer(updated).data)
+>>>>>>> ticket-project-update
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk: int):
         try:
+<<<<<<< HEAD
             prediction = self.get_object(pk, request.user)
         except Prediction.DoesNotExist:
             return Response(
@@ -245,3 +303,10 @@ class PredictionDetailAPIView(APIView):
         prediction.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+=======
+            ticket = self.get_object(pk, request.user)
+        except Ticket.DoesNotExist:
+            return Response({"detail": "Ticket not found."}, status=status.HTTP_404_NOT_FOUND)
+        ticket.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+>>>>>>> ticket-project-update

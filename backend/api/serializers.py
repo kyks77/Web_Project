@@ -1,7 +1,11 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 
+<<<<<<< HEAD
 from .models import Driver, Prediction, Race, Team
+=======
+from .models import Driver, Race, Team, Ticket
+>>>>>>> ticket-project-update
 
 
 class TeamModelSerializer(serializers.ModelSerializer):
@@ -44,20 +48,32 @@ class RaceModelSerializer(serializers.ModelSerializer):
         ]
 
 
+<<<<<<< HEAD
 class PredictionModelSerializer(serializers.ModelSerializer):
     user_username = serializers.CharField(source="user.username", read_only=True)
     race_detail = RaceModelSerializer(source="race", read_only=True)
     predicted_winner_detail = DriverModelSerializer(source="predicted_winner", read_only=True)
+=======
+class TicketModelSerializer(serializers.ModelSerializer):
+    user_username = serializers.CharField(source="user.username", read_only=True)
+    race_detail = RaceModelSerializer(source="race", read_only=True)
+>>>>>>> ticket-project-update
 
     race_id = serializers.PrimaryKeyRelatedField(
         source="race", queryset=Race.objects.all(), write_only=True
     )
+<<<<<<< HEAD
     predicted_winner_id = serializers.PrimaryKeyRelatedField(
         source="predicted_winner", queryset=Driver.objects.all(), write_only=True
     )
 
     class Meta:
         model = Prediction
+=======
+
+    class Meta:
+        model = Ticket
+>>>>>>> ticket-project-update
         fields = [
             "id",
             "user",
@@ -65,6 +81,7 @@ class PredictionModelSerializer(serializers.ModelSerializer):
             "race",
             "race_id",
             "race_detail",
+<<<<<<< HEAD
             "predicted_winner",
             "predicted_winner_id",
             "predicted_winner_detail",
@@ -73,6 +90,15 @@ class PredictionModelSerializer(serializers.ModelSerializer):
             "created_at",
         ]
         read_only_fields = ["user", "race", "predicted_winner", "created_at"]
+=======
+            "ticket_holder_name",
+            "seat_category",
+            "quantity",
+            "notes",
+            "purchased_at",
+        ]
+        read_only_fields = ["user", "race", "purchased_at"]
+>>>>>>> ticket-project-update
 
 
 class LoginSerializer(serializers.Serializer):
@@ -101,4 +127,7 @@ class DriverStatsSerializer(serializers.Serializer):
     podiums = serializers.IntegerField()
     world_titles = serializers.IntegerField()
     wins = serializers.IntegerField()
+<<<<<<< HEAD
 
+=======
+>>>>>>> ticket-project-update

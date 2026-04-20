@@ -1,0 +1,28 @@
+<section class="container list-page">
+  <div class="page-head">
+    <div>
+      <h2 class="h2 h-display">Races</h2>
+      <p class="p">Load the full calendar or only upcoming weekends.</p>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" type="button" (click)="loadRaces()">Load All Races</button>
+      <button class="btn" type="button" (click)="loadUpcomingRaces()">Load Upcoming</button>
+    </div>
+  </div>
+
+  @if (error) {
+    <div class="error-box">{{ error }}</div>
+  }
+
+  <div class="grid grid-3">
+    @for (race of races; track race.id) {
+      <article class="card race-card">
+        <h3>{{ race.grand_prix_name }}</h3>
+        <p>{{ race.location }}</p>
+        <p>{{ race.circuit_name }}</p>
+        <p>{{ race.race_date }}</p>
+        <p>Winner: {{ race.winner_driver_name || 'TBD' }}</p>
+      </article>
+    }
+  </div>
+</section>

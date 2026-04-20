@@ -66,6 +66,13 @@
   color: rgba(255, 255, 255, 0.92);
   transform: translateY(-1px);
 }
+<<<<<<< HEAD
+=======
+.active-link {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.98);
+}
+>>>>>>> ticket-project-update
 
 .nav-actions {
   display: inline-flex;
@@ -279,4 +286,7 @@
   .footer-inner { flex-direction: column; align-items: start; }
   .footer-muted { text-align: left; }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ticket-project-update

@@ -58,6 +58,7 @@ class Race(models.Model):
         return f"{self.grand_prix_name} ({self.race_date})"
 
 
+<<<<<<< HEAD
 class Prediction(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="predictions"
@@ -69,14 +70,35 @@ class Prediction(models.Model):
     predicted_pole = models.CharField(max_length=120)
     notes = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+=======
+class Ticket(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tickets"
+    )
+    race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name="tickets")
+    ticket_holder_name = models.CharField(max_length=120)
+    seat_category = models.CharField(max_length=50)
+    quantity = models.PositiveIntegerField(default=1)
+    notes = models.TextField(blank=True)
+    purchased_at = models.DateTimeField(auto_now_add=True)
+>>>>>>> ticket-project-update
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
+<<<<<<< HEAD
                 fields=["user", "race"], name="unique_prediction_per_user_per_race"
+=======
+                fields=["user", "race", "ticket_holder_name", "seat_category"],
+                name="unique_ticket_booking_per_user_race_holder_category",
+>>>>>>> ticket-project-update
             )
         ]
 
     def __str__(self) -> str:
+<<<<<<< HEAD
         return f"Prediction by {self.user} for {self.race}"
 
+=======
+        return f"Ticket for {self.ticket_holder_name} - {self.race}"
+>>>>>>> ticket-project-update

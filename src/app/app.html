@@ -1,12 +1,17 @@
 <div class="app-shell">
   <header class="nav">
     <div class="container nav-inner">
+<<<<<<< HEAD
       <a class="brand" href="/" aria-label="F1 Hub home">
+=======
+      <a class="brand" routerLink="/home" aria-label="F1 Hub home">
+>>>>>>> ticket-project-update
         <span class="brand-mark" aria-hidden="true"></span>
         <span class="brand-name h-display">F1 Hub</span>
       </a>
 
       <nav class="nav-links" aria-label="Primary">
+<<<<<<< HEAD
         <a class="nav-link" href="/home">Home</a>
         <a class="nav-link" href="/teams">Teams</a>
         <a class="nav-link" href="/races">Races</a>
@@ -16,6 +21,21 @@
       <div class="nav-actions">
         <a class="btn btn-ghost" href="/login">Login</a>
         <a class="btn btn-primary" href="/predictions">Buy Tickets</a>
+=======
+        <a class="nav-link" routerLink="/home" routerLinkActive="active-link">Home</a>
+        <a class="nav-link" routerLink="/teams" routerLinkActive="active-link">Teams</a>
+        <a class="nav-link" routerLink="/races" routerLinkActive="active-link">Races</a>
+        <a class="nav-link" routerLink="/tickets" routerLinkActive="active-link">Tickets</a>
+      </nav>
+
+      <div class="nav-actions">
+        @if (!auth.isLoggedIn()) {
+          <a class="btn btn-ghost" routerLink="/login">Login</a>
+        } @else {
+          <button class="btn btn-ghost" type="button" (click)="logout()">Logout</button>
+        }
+        <a class="btn btn-primary" routerLink="/tickets">Buy Tickets</a>
+>>>>>>> ticket-project-update
       </div>
     </div>
   </header>
@@ -26,6 +46,7 @@
         <div class="hero-left">
           <div class="badge">
             <span class="badge-dot" aria-hidden="true"></span>
+<<<<<<< HEAD
             Built for fast schedules & clean races
           </div>
 
@@ -42,6 +63,23 @@
             <a class="btn btn-primary" href="/home">Explore the hub</a>
             <a class="btn" href="/races">View schedule</a>
            </div>
+=======
+            Built for race weekends and ticket purchases
+          </div>
+
+          <h1 class="h1 h-display">
+            Formula 1 tickets,
+            <span class="hero-accent">teams and schedules</span>
+          </h1>
+          <p class="p hero-sub">
+            Track the calendar, browse constructor info, and manage race ticket orders from one Angular + Django app.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" routerLink="/home">Explore the hub</a>
+            <a class="btn" routerLink="/tickets">Book a seat</a>
+          </div>
+>>>>>>> ticket-project-update
         </div>
 
         <div class="hero-right card">
@@ -56,7 +94,11 @@
             <div class="mini card mini-card">
               <div class="mini-label">Upcoming</div>
               <div class="mini-value">Grand Prix</div>
+<<<<<<< HEAD
               <div class="mini-sub">Schedule →</div>
+=======
+              <div class="mini-sub">Live schedule</div>
+>>>>>>> ticket-project-update
             </div>
             <div class="mini card mini-card">
               <div class="mini-label">Top teams</div>
@@ -66,6 +108,7 @@
             <div class="mini card mini-card">
               <div class="mini-label">Drivers</div>
               <div class="mini-value">20</div>
+<<<<<<< HEAD
               <div class="mini-sub">Grid</div>
             </div>
             <div class="mini card mini-card">
@@ -76,6 +119,19 @@
           <div class="hero-card-foot">
             <span class="hero-foot-muted">Dark. Fast. Focused.</span>
             <span class="hero-foot-accent" aria-hidden="true">—</span>
+=======
+              <div class="mini-sub">Grid overview</div>
+            </div>
+            <div class="mini card mini-card">
+              <div class="mini-label">Ticketing</div>
+              <div class="mini-value">Secure seats</div>
+              <div class="mini-sub">Orders by account</div>
+            </div>
+          </div>
+          <div class="hero-card-foot">
+            <span class="hero-foot-muted">Fast. Practical. Clear.</span>
+            <span class="hero-foot-accent" aria-hidden="true">-</span>
+>>>>>>> ticket-project-update
             <span class="hero-foot-muted">F1 Hub</span>
           </div>
         </div>
@@ -85,12 +141,19 @@
     <section class="section">
       <div class="container">
         <div class="section-head">
+<<<<<<< HEAD
           <div>
 
           </div>
           <div class="section-actions">
             <a class="btn btn-ghost" href="/teams">Browse teams</a>
             <a class="btn" href="/predictions">My history</a>
+=======
+          <div></div>
+          <div class="section-actions">
+            <a class="btn btn-ghost" routerLink="/teams">Browse teams</a>
+            <a class="btn" routerLink="/tickets">My tickets</a>
+>>>>>>> ticket-project-update
           </div>
         </div>
 
@@ -98,17 +161,30 @@
           <div class="card feature">
             <div class="feature-icon" aria-hidden="true"></div>
             <div class="feature-title">Schedule-ready</div>
+<<<<<<< HEAD
             <div class="feature-text">Upcoming races surface quickly with a clean layout.</div>
           </div>
           <div class="card feature">
             <div class="feature-icon feature-icon-2" aria-hidden="true"></div>
             <div class="feature-title">Prediction flow</div>
             <div class="feature-text">Create, edit, delete predictions — crisp and explainable.</div>
+=======
+            <div class="feature-text">Upcoming races load quickly with API-backed cards and graceful error states.</div>
+          </div>
+          <div class="card feature">
+            <div class="feature-icon feature-icon-2" aria-hidden="true"></div>
+            <div class="feature-title">Ticket flow</div>
+            <div class="feature-text">Create, update, list, and cancel ticket orders with JWT authentication.</div>
+>>>>>>> ticket-project-update
           </div>
           <div class="card feature">
             <div class="feature-icon feature-icon-3" aria-hidden="true"></div>
             <div class="feature-title">Standings style</div>
+<<<<<<< HEAD
             <div class="feature-text">Stats endpoints map neatly to a “standings” UI.</div>
+=======
+            <div class="feature-text">Driver stats and race summaries help users choose which event to attend.</div>
+>>>>>>> ticket-project-update
           </div>
         </div>
       </div>
@@ -121,7 +197,11 @@
           <span class="brand-mark" aria-hidden="true"></span>
           <span class="h-display">F1 Hub</span>
         </div>
+<<<<<<< HEAD
         <div class="footer-muted">University project • Angular + Django REST</div>
+=======
+        <div class="footer-muted">University project | Angular + Django REST</div>
+>>>>>>> ticket-project-update
       </div>
     </div>
 
