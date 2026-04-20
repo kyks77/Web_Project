@@ -49,6 +49,10 @@ export class AuthService {
     return this.getStorageItem('username') ?? 'Guest';
   }
 
+  getToken(): string | null {
+    return this.getStorageItem('access_token');
+  }
+
   isLoggedIn(): boolean {
     return !!this.getStorageItem('access_token');
   }
