@@ -1,0 +1,77 @@
+<section class="container tickets-page">
+  <div class="page-head">
+    <div>
+      <h2 class="h2 h-display">Tickets</h2>
+      <p class="p">Buy, edit, and cancel your Formula 1 ticket orders.</p>
+    </div>
+    <button class="btn" type="button" (click)="loadTickets()">Load My Tickets</button>
+  </div>
+
+  <div class="grid tickets-layout">
+    <form class="card ticket-form" (submit)="$event.preventDefault(); submitTicket()">
+      <h3>{{ selectedTicketId ? 'Update ticket' : 'Buy ticket' }}</h3>
+
+      <label>
+        Race ID
+        <input [(ngModel)]="ticketForm.race_id" name="race_id" type="number" min="1" />
+      </label>
+
+      <label>
+        Ticket holder name
+        <input [(ngModel)]="ticketForm.ticket_holder_name" name="ticket_holder_name" />
+      </label>
+
+      <label>
+        Seat category
+        <input [(ngModel)]="ticketForm.seat_category" name="seat_category" />
+      </label>
+
+      <label>
+        Quantity
+        <input [(ngModel)]="ticketForm.quantity" name="quantity" type="number" min="1" />
+      </label>
+
+      <label>
+        Notes
+        <textarea [(ngModel)]="ticketForm.notes" name="notes" rows="4"></textarea>
+      </label>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">
+          {{ selectedTicketId ? 'Save Changes' : 'Buy Ticket' }}
+        </button>
+        <button class="btn" type="button" (click)="resetForm()">Clear</button>
+      </div>
+
+      @if (success) {
+        <p class="status success">{{ success }}</p>
+      }
+
+      @if (error) {
+        <p class="status error">{{ error }}</p>
+      }
+    </form>
+
+    <section class="card ticket-list">
+      <h3>My orders</h3>
+
+      @if (tickets.length === 0) {
+        <p class="p">No tickets loaded yet.</p>
+      }
+
+      @for (ticket of tickets; track ticket.id) {
+        <article class="ticket-item">
+          <div>
+            <strong>{{ ticket.race_detail.grand_prix_name }}</strong>
+            <p>{{ ticket.ticket_holder_name }} | {{ ticket.seat_category }}</p>
+            <p>Quantity: {{ ticket.quantity }}</p>
+          </div>
+          <div class="item-actions">
+            <button class="btn" type="button" (click)="editTicket(ticket)">Edit</button>
+            <button class="btn btn-ghost" type="button" (click)="deleteTicket(ticket.id)">Delete</button>
+          </div>
+        </article>
+      }
+    </section>
+  </div>
+</section>

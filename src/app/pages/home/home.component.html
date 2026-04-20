@@ -1,0 +1,52 @@
+<section class="container dashboard">
+  <div class="page-head">
+    <div>
+      <h2 class="h2 h-display">Dashboard</h2>
+      <p class="p">Use the buttons below to fetch live data from the Django REST API.</p>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" type="button" (click)="loadSummary()">Load Summary</button>
+      <button class="btn" type="button" (click)="loadStats()">Load Driver Stats</button>
+    </div>
+  </div>
+
+  @if (error) {
+    <div class="error-box">{{ error }}</div>
+  }
+
+  <div class="grid grid-2">
+    <section class="card panel">
+      <h3>Upcoming races</h3>
+      @if (summary.length === 0) {
+        <p class="p">No summary loaded yet.</p>
+      }
+
+      @for (item of summary; track item.grand_prix_name + item.race_date) {
+        <article class="row">
+          <div>
+            <strong>{{ item.grand_prix_name }}</strong>
+            <p>{{ item.location }} | {{ item.circuit_name }}</p>
+          </div>
+          <span>{{ item.race_date }}</span>
+        </article>
+      }
+    </section>
+
+    <section class="card panel">
+      <h3>Driver stats</h3>
+      @if (stats.length === 0) {
+        <p class="p">No driver stats loaded yet.</p>
+      }
+
+      @for (driver of stats; track driver.name) {
+        <article class="row">
+          <div>
+            <strong>{{ driver.name }}</strong>
+            <p>{{ driver.team_name }}</p>
+          </div>
+          <span>{{ driver.wins }} wins</span>
+        </article>
+      }
+    </section>
+  </div>
+</section>

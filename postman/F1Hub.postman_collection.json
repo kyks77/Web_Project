@@ -1,0 +1,267 @@
+{
+  "info": {
+    "name": "F1Hub API Collection",
+    "_postman_id": "1e3b63f4-6f0c-48a8-91ea-c2c6d36f1hub",
+    "description": "Postman collection for the F1 Hub Angular + Django REST ticket project.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api"
+    },
+    {
+      "key": "accessToken",
+      "value": ""
+    },
+    {
+      "key": "refreshToken",
+      "value": ""
+    },
+    {
+      "key": "ticketId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"demo\",\n  \"password\": \"demo12345\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login/"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"access\": \"<jwt_access_token>\",\n  \"refresh\": \"<jwt_refresh_token>\",\n  \"username\": \"demo\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh\": \"{{refreshToken}}\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/logout/"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"detail\": \"Logged out successfully.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Teams",
+      "item": [
+        {
+          "name": "Get Teams",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/teams/"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "OK",
+              "code": 200,
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Red Bull Racing\",\n    \"country\": \"Austria\",\n    \"principal\": \"Christian Horner\",\n    \"car_name\": \"RB20\",\n    \"created_at\": \"2026-04-20T09:00:00Z\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Races",
+      "item": [
+        {
+          "name": "Get Races",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/races/"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "OK",
+              "code": 200,
+              "body": "[\n  {\n    \"id\": 1,\n    \"grand_prix_name\": \"Monaco Grand Prix\",\n    \"location\": \"Monte Carlo\",\n    \"race_date\": \"2026-05-24\",\n    \"circuit_name\": \"Circuit de Monaco\",\n    \"winner_driver\": null,\n    \"winner_driver_name\": null,\n    \"laps\": 78\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Race Summary",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/races/summary/?upcoming=true"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "OK",
+              "code": 200,
+              "body": "[\n  {\n    \"grand_prix_name\": \"Monaco Grand Prix\",\n    \"race_date\": \"2026-05-24\",\n    \"location\": \"Monte Carlo\",\n    \"circuit_name\": \"Circuit de Monaco\",\n    \"winner_driver_name\": null\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stats",
+      "item": [
+        {
+          "name": "Get Driver Stats",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/stats/drivers/"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "OK",
+              "code": 200,
+              "body": "[\n  {\n    \"name\": \"Max Verstappen\",\n    \"team_name\": \"Red Bull Racing\",\n    \"podiums\": 110,\n    \"world_titles\": 4,\n    \"wins\": 65\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "Get My Tickets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/tickets/"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "OK",
+              "code": 200,
+              "body": "[\n  {\n    \"id\": 1,\n    \"user\": 1,\n    \"user_username\": \"demo\",\n    \"race\": 1,\n    \"race_detail\": {\n      \"id\": 1,\n      \"grand_prix_name\": \"Monaco Grand Prix\",\n      \"location\": \"Monte Carlo\",\n      \"race_date\": \"2026-05-24\",\n      \"circuit_name\": \"Circuit de Monaco\",\n      \"winner_driver\": null,\n      \"winner_driver_name\": null,\n      \"laps\": 78\n    },\n    \"ticket_holder_name\": \"Alex Student\",\n    \"seat_category\": \"Grandstand\",\n    \"quantity\": 2,\n    \"notes\": \"Need seats together\",\n    \"purchased_at\": \"2026-04-20T09:30:00Z\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create Ticket",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"race_id\": 1,\n  \"ticket_holder_name\": \"Alex Student\",\n  \"seat_category\": \"Grandstand\",\n  \"quantity\": 2,\n  \"notes\": \"Need seats together\"\n}"
+            },
+            "url": "{{baseUrl}}/tickets/"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"id\": 1,\n  \"user\": 1,\n  \"user_username\": \"demo\",\n  \"race\": 1,\n  \"ticket_holder_name\": \"Alex Student\",\n  \"seat_category\": \"Grandstand\",\n  \"quantity\": 2,\n  \"notes\": \"Need seats together\",\n  \"purchased_at\": \"2026-04-20T09:30:00Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Ticket",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"race_id\": 1,\n  \"ticket_holder_name\": \"Alex Student\",\n  \"seat_category\": \"VIP\",\n  \"quantity\": 3,\n  \"notes\": \"Upgrade request\"\n}"
+            },
+            "url": "{{baseUrl}}/tickets/{{ticketId}}/"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"id\": 1,\n  \"user\": 1,\n  \"user_username\": \"demo\",\n  \"race\": 1,\n  \"ticket_holder_name\": \"Alex Student\",\n  \"seat_category\": \"VIP\",\n  \"quantity\": 3,\n  \"notes\": \"Upgrade request\",\n  \"purchased_at\": \"2026-04-20T09:30:00Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Ticket",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": "{{baseUrl}}/tickets/{{ticketId}}/"
+          },
+          "response": [
+            {
+              "name": "Example response",
+              "status": "No Content",
+              "code": 204,
+              "body": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

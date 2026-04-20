@@ -1,0 +1,24 @@
+<section class="container list-page">
+  <div class="page-head">
+    <div>
+      <h2 class="h2 h-display">Teams</h2>
+      <p class="p">Browse constructors before choosing which race to attend.</p>
+    </div>
+    <button class="btn btn-primary" type="button" (click)="loadTeams()">Load Teams</button>
+  </div>
+
+  @if (error) {
+    <div class="error-box">{{ error }}</div>
+  }
+
+  <div class="grid grid-3">
+    @for (team of teams; track team.id) {
+      <article class="card team-card">
+        <h3>{{ team.name }}</h3>
+        <p>Country: {{ team.country }}</p>
+        <p>Principal: {{ team.principal }}</p>
+        <p>Car: {{ team.car_name }}</p>
+      </article>
+    }
+  </div>
+</section>
