@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # ProjectWeb
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.2.
@@ -64,9 +64,9 @@ For more information on using the Angular CLI, including detailed command refere
 Angular + Django REST university project for browsing Formula 1 teams and races, then buying tickets for selected Grand Prix weekends.
 
 ## Group Members
-- Student 1 - replace with real name
-- Student 2 - replace with real name
-- Student 3 - replace with real name
+- Student 1 - 24B031972 Rakhymzhan Kuanysh
+- Student 2 - 24B031899 Mukhtarbek Daniyal
+- Student 3 - 23B031842 Akhmetzhanov Imran
 
 ## Project Idea
 The application helps users:
